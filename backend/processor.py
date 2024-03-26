@@ -40,6 +40,9 @@ class Processor():
             article_response = requests.get(new_url, headers=header)
             print(new_url)
             print(article_response.text)
+            article_soup = BeautifulSoup(article_response.text, 'lxml')
+            characters = article_soup.find('div', id='tab2')
+            print(characters.text)
 
     def _write(self, df: pd.DataFrame) -> UploadFile:
         output_file = BytesIO()
